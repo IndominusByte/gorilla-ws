@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  gorilla-ws-production:
+    container_name: ${BACKEND_CONTAINER}
+    hostname: ${BACKEND_HOST}
+    image: "${BACKEND_IMAGE}:${BACKEND_IMAGE_TAG}"
+    restart: always
+    environment:
+      BACKEND_STAGE: ${BACKEND_STAGE}
+    ports:
+      - "8081:8081"
+    networks:
+      - bhaktirahayu-environment-production
+    volumes:
+      - ../static:/app/static
+
+networks:
+  bhaktirahayu-environment-production:
+    external: true
+    name: bhaktirahayu-environment-production
+

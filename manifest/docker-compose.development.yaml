@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  gorilla-ws-development:
+    container_name: ${BACKEND_CONTAINER}
+    hostname: ${BACKEND_HOST}
+    image: "${BACKEND_IMAGE}:${BACKEND_IMAGE_TAG}"
+    restart: always
+    environment:
+      BACKEND_STAGE: ${BACKEND_STAGE}
+    ports:
+      - "8081:8081"
+    networks:
+      - bhaktirahayu-environment-development
+    volumes:
+      - /app/bin
+      - ../:/app
+
+networks:
+  bhaktirahayu-environment-development:
+    external: true
+    name: bhaktirahayu-environment-development
+
